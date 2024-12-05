@@ -21,3 +21,5 @@ Web jars for our project
 * [Database Entities for Users, UserTypes](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/613d442f4c96b5e49b287d4d4ce38e7344c7bb16)
 
 ### 1.4 User Registration: Repositories and Controller
+* [registration repositories and controller part 1](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/8a4fd05e7ba33dfb62e829e90ac23b6efda1ef79)
+* [registration repositories and controller part 2]()
