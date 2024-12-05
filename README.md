@@ -15,5 +15,6 @@ Web jars for our project
 **font-awesome**    -> Collections of fonts, icons and images  
 **webjars-locator** -> Support file for locating assets in JAR files
 * [add project template files (HTML, JS and CSS)](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/92877a605bedbf7564d7c2cfd33bc731a6c8b401)
+* [html and js refactored](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/06b167e4be104ee0e446fd912578a3e43eddfbc9)
 
 ### 1.3 Database Entities for Users, UserTypes
