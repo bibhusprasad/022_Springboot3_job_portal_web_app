@@ -22,4 +22,8 @@ public class UsersService {
         user.setRegistrationDate(new Date(System.currentTimeMillis()));
         return usersRepository.save(user);
     }
+
+    public boolean getUserByEmail(String email) {
+        return usersRepository.findByEmail(email).isPresent();
+    }
 }

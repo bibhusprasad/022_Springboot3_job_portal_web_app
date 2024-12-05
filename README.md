@@ -22,4 +22,6 @@ Web jars for our project
 
 ### 1.4 User Registration: Repositories and Controller
 * [registration repositories and controller part 1](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/8a4fd05e7ba33dfb62e829e90ac23b6efda1ef79)
-* [registration repositories and controller part 2]()
+* [registration repositories and controller part 2](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/84299918f2673482e5b18d6b1c26a9a2b324fb65)
+
+### 1.5 Bug fix duplicate Email for registration
