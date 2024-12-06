@@ -25,3 +25,5 @@ Web jars for our project
 * [registration repositories and controller part 2](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/84299918f2673482e5b18d6b1c26a9a2b324fb65)
 
 ### 1.5 Bug fix duplicate Email for registration
+* [block duplicate email for registration](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/327bd1eb15f9f8f136ba8171eaaf65e46962fcb9)
+

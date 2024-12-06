@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -21,20 +21,22 @@
             </label>
         </div>
         <div class="logo_right">
-            <label class="Candidate_login_btn">
-                <a th:href="@{/login}">
-                    Job Candidate Login
+            <label class="Candidate_login_btn"> Job Candidate
+                <a th:href="@{/login}" style="color:blue;">
+                     Login
                 </a>
-                <a th:href="@{/register}">
-                    /Register
+                or
+                <a th:href="@{/register}" style="color:blue;">
+                    Register
                 </a>
             </label>
-            <label class="Recruiter_login_btn">
-                <a th:href="@{/login}">
-                    Recruiter Login
+            <label class="Recruiter_login_btn"> Recruiter
+                <a th:href="@{/login}" style="color:gold;">
+                     Login
                 </a>
-                <a th:href="@{/register}">
-                    /Register
+                or
+                <a th:href="@{/register}" style="color:gold;">
+                    Register
                 </a>
             </label>
         </div>
