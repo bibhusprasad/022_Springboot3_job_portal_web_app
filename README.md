@@ -29,3 +29,4 @@ Web jars for our project
 * [refactored html code and remove unused imports](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/5caeac4cdcde1b5c9da2cccb44c0a261ff38d062)
 
 ### 1.6 Create profile for recruiters and job seekers and add skills for job seekers
+* [create profile for recruiters and job seekers and add skills for job seekers](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/a2cc4fffe2af07f11babcec169166da0c664ebe7)

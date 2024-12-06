@@ -4,6 +4,7 @@ import com.bibhu.springboot.jobportal.entity.Users;
 import com.bibhu.springboot.jobportal.entity.UsersType;
 import com.bibhu.springboot.jobportal.services.UsersService;
 import com.bibhu.springboot.jobportal.services.UsersTypeService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,10 +28,12 @@ public class UsersController {
     }
 
     @GetMapping("/register")
-    public String register(Model model) {
+    public String register(Model model, HttpServletRequest request) {
+        String userType = request.getParameter("userType");
         List<UsersType> usersTypes = usersTypeService.getAll();
         model.addAttribute("getAllTypes", usersTypes);
         model.addAttribute("user", new Users());
+        model.addAttribute("userType", userType);
         return "register";
     }
 
