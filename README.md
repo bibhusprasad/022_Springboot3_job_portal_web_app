@@ -37,4 +37,7 @@ Web jars for our project
 * [configure spring security and develop custom user authentication and authorization](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/fd044bee9ea37d4e378ea93286ab9805ab9aeab3)
 
 ### 2.2 Custom Authentication success handler and integrate dashboard with current logged user
-* [custom Authentication success handler and integrate Dashboard with Current Logged in User]()
+* [custom Authentication success handler and integrate Dashboard with Current Logged in User](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/df979a391c9e6da2dd4931f0fdd7d78ada299bd4)
+
+### 2.3 Add login logout request mapping to controller
+* [add login logout request mapping to controller]()

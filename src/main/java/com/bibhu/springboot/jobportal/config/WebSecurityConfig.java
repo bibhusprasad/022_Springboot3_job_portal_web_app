@@ -53,8 +53,8 @@ public class WebSecurityConfig {
         });
 
         http.formLogin(form -> form.loginPage("/login")
-                .permitAll()
-                .successHandler(customAuthenticationSuccessHandler))
+                        .permitAll()
+                        .successHandler(customAuthenticationSuccessHandler))
                 .logout(logout -> {
                     logout.logoutUrl("/logout");
                     logout.logoutSuccessUrl("/");
@@ -65,15 +65,15 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    protected AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncode());
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(customUserDetailsService);
         return daoAuthenticationProvider;
     }
 
     @Bean
-    protected PasswordEncoder passwordEncode() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
