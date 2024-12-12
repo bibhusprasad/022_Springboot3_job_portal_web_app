@@ -40,4 +40,5 @@ Web jars for our project
 * [custom Authentication success handler and integrate Dashboard with Current Logged in User](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/df979a391c9e6da2dd4931f0fdd7d78ada299bd4)
 
 ### 2.3 Add login logout request mapping to controller
-* [add login logout request mapping to controller]()
+* [add login logout request mapping to controller](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/509f552ac657ab5d271e8b1902afc1c1e6c74769)
+* [refactored ui enhanced based on job seeker and recruiter user]()

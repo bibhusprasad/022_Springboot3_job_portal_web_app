@@ -47,6 +47,7 @@
                         <h1 class="heading_font font-weight-bold">
                             <p th:case="'cr'">Create Job Seeker Account</p>
                             <p th:case="'rr'">Create Recruiter Account</p>
+                            <p th:case="*">Create Your Account</p>
                         </h1>
                     </div>
                     <div class="myForm">
@@ -122,14 +123,18 @@
                                                 class="form-control"
                                                 th:field="*{userTypeId}"
                                         >
-                                            <th:block th:switch="${userType}">
+                                            <th:block th:switch="${userType}" th:each="getuserType :${getAllTypes}">
                                                 <option th:case="'rr'"
-                                                        th:text="Recruiter"
+                                                        th:text="'Recruiter'"
                                                         th:value="1"
                                                 ></option>
                                                 <option th:case="'cr'"
                                                         th:text="'Job Seeker'"
                                                         th:value="2"
+                                                ></option>
+                                                <option th:case="*"
+                                                        th:text="${getuserType.userTypeName}"
+                                                        th:value="${getuserType.userTypeId}"
                                                 ></option>
                                             </th:block>
                                         </select>
