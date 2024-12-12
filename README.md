@@ -3,7 +3,7 @@
 
 # Job portal web application using Java and Springboot3 
 
-## 1.Registration
+## 1. Registration
 ### 1.1 Setup Spring Boot Project
 * [setup springboot project](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/7e64e0096217dbe4eccb6539a214367804368e74)
 
@@ -30,3 +30,7 @@ Web jars for our project
 
 ### 1.6 Create profile for recruiters and job seekers and add skills for job seekers
 * [create profile for recruiters and job seekers and add skills for job seekers](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/a2cc4fffe2af07f11babcec169166da0c664ebe7)
+* [refactored ui enhanced based on job seeker and recruiter user](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/187fe3f995a24dbb9d41caf402e016319cecf22e)
+
+## 2. Security Login and Logout
+### 2.1 Configure Spring Security
