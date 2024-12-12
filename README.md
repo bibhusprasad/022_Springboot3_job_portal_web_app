@@ -33,4 +33,8 @@ Web jars for our project
 * [refactored ui enhanced based on job seeker and recruiter user](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/187fe3f995a24dbb9d41caf402e016319cecf22e)
 
 ## 2. Security Login and Logout
-### 2.1 Configure Spring Security
+### 2.1 Configure Spring Security and develop custom user authentication and authorization
+* [configure spring security and develop custom user authentication and authorization](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/fd044bee9ea37d4e378ea93286ab9805ab9aeab3)
+
+### 2.2 Custom Authentication success handler and integrate dashboard with current logged user
+* [custom Authentication success handler and integrate Dashboard with Current Logged in User]()
