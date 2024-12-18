@@ -2,12 +2,12 @@ package com.bibhu.springboot.jobportal.controller;
 
 import com.bibhu.springboot.jobportal.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import static com.bibhu.springboot.jobportal.util.AuthenticationUtil.getCurrentUsername;
+import static com.bibhu.springboot.jobportal.util.AuthenticationUtil.isAnonymousAuthenticationTokenInstance;
 
 @Controller
 public class JobPostActivityController {
@@ -22,10 +22,9 @@ public class JobPostActivityController {
     @GetMapping("/dashboard/")
     public String searchJobs(Model model) {
         Object currentUserProfile = usersService.getCurrentUserProfile();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!( authentication instanceof AnonymousAuthenticationToken)) {
-            String currentUsername = authentication.getName();
-            model.addAttribute("username", currentUsername);
+
+        if (!isAnonymousAuthenticationTokenInstance()) {
+            model.addAttribute("username", getCurrentUsername());
         }
         model.addAttribute("user", currentUserProfile);
         return "dashboard";

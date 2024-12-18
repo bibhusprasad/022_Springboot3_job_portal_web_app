@@ -7,16 +7,17 @@ import com.bibhu.springboot.jobportal.repository.JobSeekerProfileRepository;
 import com.bibhu.springboot.jobportal.repository.RecruiterProfileRepository;
 import com.bibhu.springboot.jobportal.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.Optional;
+
+import static com.bibhu.springboot.jobportal.util.AuthenticationUtil.getAuthentication;
+import static com.bibhu.springboot.jobportal.util.AuthenticationUtil.getCurrentUsername;
+import static com.bibhu.springboot.jobportal.util.AuthenticationUtil.isAnonymousAuthenticationTokenInstance;
 
 @Service
 public class UsersService {
@@ -60,13 +61,12 @@ public class UsersService {
     }
 
     public Object getCurrentUserProfile() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            String userName = authentication.getName();
+        if (!isAnonymousAuthenticationTokenInstance()) {
+            String userName = getCurrentUsername();
             Users user = findUserByEmail(userName)
                     .orElseThrow(() -> new UsernameNotFoundException("Could not find user " + userName));
             int userId = user.getUserId();
-            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))) {
+            if (getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))) {
                 return recruiterProfileRepository.findById(userId)
                         .orElse(new RecruiterProfile());
             } else {
