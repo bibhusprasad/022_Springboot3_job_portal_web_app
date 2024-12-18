@@ -45,5 +45,6 @@ Web jars for our project
 
 ## 3. Recruiter Profile
 ### 3.1 Create requiter profile controller and service
-* [create requiter profile controller and service]()
+* [create requiter profile controller and service](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/a2cc4fffe2af07f11babcec169166da0c664ebe7)
+* [refactor controller, service and repository based on hierarchy]()
 

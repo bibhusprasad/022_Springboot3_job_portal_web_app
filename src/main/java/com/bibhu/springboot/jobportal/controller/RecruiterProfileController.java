@@ -2,8 +2,8 @@ package com.bibhu.springboot.jobportal.controller;
 
 import com.bibhu.springboot.jobportal.entity.RecruiterProfile;
 import com.bibhu.springboot.jobportal.entity.Users;
-import com.bibhu.springboot.jobportal.repository.UsersRepository;
 import com.bibhu.springboot.jobportal.services.RecruiterProfileService;
+import com.bibhu.springboot.jobportal.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,24 +20,24 @@ import java.util.Optional;
 @RequestMapping("/recruiter-profile")
 public class RecruiterProfileController {
 
-    private final UsersRepository usersRepository;
+    private final UsersService usersService;
     private final RecruiterProfileService recruiterProfileService;
 
     @Autowired
-    public RecruiterProfileController(UsersRepository usersRepository,
+    public RecruiterProfileController(UsersService usersService,
                                       RecruiterProfileService recruiterProfileService) {
-        this.usersRepository = usersRepository;
+        this.usersService = usersService;
         this.recruiterProfileService = recruiterProfileService;
     }
 
     @GetMapping("/")
     public String recruiterProfile(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication instanceof AnonymousAuthenticationToken) {
+        if (authentication instanceof AnonymousAuthenticationToken) {
             String currentUserName = authentication.getName();
-            Users users = usersRepository.findByEmail(currentUserName)
+            Users users = usersService.findUserByEmail(currentUserName)
                     .orElseThrow(() -> new UsernameNotFoundException("Could not found user " + currentUserName));
-            Optional<RecruiterProfile> recruiterProfileOptional = recruiterProfileService.getOne(users.getUserId());
+            Optional<RecruiterProfile> recruiterProfileOptional = recruiterProfileService.findUserProfile(users.getUserId());
             recruiterProfileOptional.ifPresent(recruiterProfile -> model.addAttribute("profile", recruiterProfile));
         }
         return "recruiter_profile";

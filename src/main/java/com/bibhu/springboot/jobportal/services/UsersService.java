@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class UsersService {
@@ -42,7 +43,7 @@ public class UsersService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Users savedUser = usersRepository.save(user);
         int userTypeId = user.getUserTypeId().getUserTypeId();
-        if(userTypeId == 1) {
+        if (userTypeId == 1) {
             recruiterProfileRepository.save(new RecruiterProfile(savedUser));
         } else {
             jobSeekerProfileRepository.save(new JobSeekerProfile(savedUser));
@@ -50,18 +51,22 @@ public class UsersService {
         return savedUser;
     }
 
-    public boolean getUserByEmail(String email) {
-        return usersRepository.findByEmail(email).isPresent();
+    public boolean checkForExistingEmailId(String email) {
+        return findUserByEmail(email).isPresent();
+    }
+
+    public Optional<Users> findUserByEmail(String currentUserName) {
+        return usersRepository.findByEmail(currentUserName);
     }
 
     public Object getCurrentUserProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(!(authentication instanceof AnonymousAuthenticationToken)) {
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String userName = authentication.getName();
-            Users user = usersRepository.findByEmail(userName)
+            Users user = findUserByEmail(userName)
                     .orElseThrow(() -> new UsernameNotFoundException("Could not find user " + userName));
             int userId = user.getUserId();
-            if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))) {
+            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))) {
                 return recruiterProfileRepository.findById(userId)
                         .orElse(new RecruiterProfile());
             } else {
@@ -71,4 +76,5 @@ public class UsersService {
         }
         return null;
     }
+
 }

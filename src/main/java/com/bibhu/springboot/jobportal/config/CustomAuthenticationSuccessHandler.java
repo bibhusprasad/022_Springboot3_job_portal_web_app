@@ -15,7 +15,10 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     @Override
     public void onAuthenticationSuccess(
-            HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+            HttpServletRequest request,
+            HttpServletResponse response,
+            Authentication authentication) throws IOException, ServletException {
+        
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String username = userDetails.getUsername();
         System.out.println("The username " + username + " is logged in.");

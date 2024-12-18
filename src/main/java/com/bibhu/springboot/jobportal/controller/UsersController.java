@@ -22,17 +22,18 @@ import java.util.List;
 public class UsersController {
 
     private final UsersTypeService usersTypeService;
-
     private final UsersService usersService;
 
     @Autowired
-    public UsersController(UsersTypeService usersTypeService, UsersService usersService) {
+    public UsersController(UsersTypeService usersTypeService,
+                           UsersService usersService) {
         this.usersTypeService = usersTypeService;
         this.usersService = usersService;
     }
 
     @GetMapping("/register")
-    public String register(Model model, HttpServletRequest request) {
+    public String register(Model model,
+                           HttpServletRequest request) {
         String userType = request.getParameter("userType");
         List<UsersType> usersTypes = usersTypeService.getAll();
         model.addAttribute("getAllTypes", usersTypes);
@@ -42,9 +43,10 @@ public class UsersController {
     }
 
     @PostMapping("/register/new")
-    public String userRegister(@Valid Users user, Model model) {
-        boolean emailIsUsed = usersService.getUserByEmail(user.getEmail());
-        if(emailIsUsed){
+    public String userRegister(@Valid Users user,
+                               Model model) {
+        boolean emailIsUsed = usersService.checkForExistingEmailId(user.getEmail());
+        if (emailIsUsed) {
             List<UsersType> usersTypes = usersTypeService.getAll();
             model.addAttribute("error", "Email already registered, try to login or register with other email.");
             model.addAttribute("getAllTypes", usersTypes);
@@ -61,9 +63,10 @@ public class UsersController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null) {
+        if (authentication != null) {
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         }
         return "redirect:/";
