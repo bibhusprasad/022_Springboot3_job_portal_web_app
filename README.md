@@ -49,5 +49,7 @@ Web jars for our project
 * [refactor controller, service and repository based on hierarchy](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/73af95ea4bc37fb20c823e153073d9498e7b6a89)
 
 ### 3.2 Add support for file upload and update dash board to display recruiter profile
-* [add support for file upload and update dash board to display recruiter profile]()
+* [add support for file upload and update dash board to display recruiter profile](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/a85677c3922d8743e3be5f82640768db58a7bf38)
 
+### 3.3 Add logging framework slf4j
+* [add logging framework slf4j]()

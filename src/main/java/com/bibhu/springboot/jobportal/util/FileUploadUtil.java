@@ -1,5 +1,6 @@
 package com.bibhu.springboot.jobportal.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+@Slf4j
 public class FileUploadUtil {
 
     public static void saveFile(String uploadDir,
@@ -21,8 +23,8 @@ public class FileUploadUtil {
 
         try (InputStream inputStream = multipartFile.getInputStream()) {
             Path path = uploadPath.resolve(fileName);
-            System.out.println("FilePath: " + path);
-            System.out.println("fileName: " + fileName);
+            log.info("FilePath: {}", path);
+            log.info("fileName: {}", fileName);
             Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
             throw new IOException("Could not save image file " + fileName, e);

@@ -31,3 +31,5 @@ mvnw.cmd
 .idea/
 /job-portal-web-app.iml
 photos/
+.mvn
+logs/
