@@ -41,4 +41,9 @@ Web jars for our project
 
 ### 2.3 Add login logout request mapping to controller
 * [add login logout request mapping to controller](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/509f552ac657ab5d271e8b1902afc1c1e6c74769)
-* [refactored ui enhanced based on job seeker and recruiter user]()
+* [refactored ui enhanced based on job seeker and recruiter user](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/8764f75488d692d95104ee61ae67a99d7017efaa)
+
+## 3. Recruiter Profile
+### 3.1 Create requiter profile controller and service
+* [create requiter profile controller and service]()
+
