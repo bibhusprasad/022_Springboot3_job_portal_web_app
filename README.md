@@ -72,4 +72,7 @@ Web jars for our project
 
 ## 6. Job Candidate profile
 ### 6.1 create job seeker profile controller and html file
-* [create job seeker profile controller and html file]()
+* [create job seeker profile controller and html file](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/e1693f9d8d2c8039d1b9904903056232c2ceee4a)
+
+### 6.2 create job seeker profile image update and resume upload
+* [add support to job seeker profile image and resume upload]()
