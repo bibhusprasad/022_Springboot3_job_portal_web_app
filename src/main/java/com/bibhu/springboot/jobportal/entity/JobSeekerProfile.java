@@ -11,6 +11,7 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +32,7 @@ public class JobSeekerProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "serial")
-    private int userAccountId;
+    private Integer userAccountId;
 
     @OneToOne
     @JoinColumn(name = "user_account_id")
@@ -55,5 +56,12 @@ public class JobSeekerProfile {
 
     public JobSeekerProfile(Users userId) {
         this.userId = userId;
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (null == profilePhoto || null == userAccountId)
+            return null;
+        return "/photos/candidate/" + userAccountId + "/" + profilePhoto;
     }
 }

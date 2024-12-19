@@ -68,4 +68,8 @@ Web jars for our project
 * [recruiter dashboard display and retrieve jobs](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/66883da4efd21faaed651d5c088a94789bc36955)
 
 ### 5.2 Edit a existing job
-* [edit a existing job]()
+* [edit a existing job](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/bbe7e8a84f1f7b2564c329801216c0fef4fb58de)
+
+## 6. Job Candidate profile
+### 6.1 create job seeker profile controller and html file
+* [create job seeker profile controller and html file]()
