@@ -53,5 +53,8 @@ Web jars for our project
 
 ### 3.3 Add logging framework slf4j and Custom Exception class
 * [add logging framework slf4j](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/5c064a5584aca31b7d84a15296b73272d5f01cae)
-* [add custom unchecked exception class]()
+* [add custom unchecked exception class](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/dc66025fba326bace8fdb4138117669c4ebea7e6)
 
+## 4. Recruiter Post New Job
+### 4.1 Create JPA entities for Recruiter job post activities
+* [create JPA entities for recruiter job post activities]()
