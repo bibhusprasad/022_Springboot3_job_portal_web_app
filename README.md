@@ -57,4 +57,5 @@ Web jars for our project
 
 ## 4. Recruiter Post New Job
 ### 4.1 Create JPA entities for Recruiter job post activities
-* [create JPA entities for recruiter job post activities]()
+* [create JPA entities for recruiter job post activities](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/d26e1fe7c19d7ec16f510a9c230a8a94f6cfd566)
+* [refactored entities to use lombok framework]()
