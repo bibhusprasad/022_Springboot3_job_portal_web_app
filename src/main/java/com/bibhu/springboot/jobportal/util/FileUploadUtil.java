@@ -27,6 +27,7 @@ public class FileUploadUtil {
             log.info("fileName: {}", fileName);
             Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
+            log.info("Could not save image file {}", fileName);
             throw new IOException("Could not save image file " + fileName, e);
         }
     }

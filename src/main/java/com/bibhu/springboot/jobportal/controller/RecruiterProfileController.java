@@ -2,9 +2,11 @@ package com.bibhu.springboot.jobportal.controller;
 
 import com.bibhu.springboot.jobportal.entity.RecruiterProfile;
 import com.bibhu.springboot.jobportal.entity.Users;
+import com.bibhu.springboot.jobportal.exception.CustomJobPortalException;
 import com.bibhu.springboot.jobportal.services.RecruiterProfileService;
 import com.bibhu.springboot.jobportal.services.UsersService;
 import com.bibhu.springboot.jobportal.util.FileUploadUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,7 @@ import static com.bibhu.springboot.jobportal.util.AuthenticationUtil.isAnonymous
 
 @Controller
 @RequestMapping("/recruiter-profile")
+@Slf4j
 public class RecruiterProfileController {
 
     private final UsersService usersService;
@@ -70,7 +73,8 @@ public class RecruiterProfileController {
         try{
             FileUploadUtil.saveFile(uploadedDir, fileName, multipartFile);
         } catch (Exception e) {
-            throw new RuntimeException("Could not upload file", e);
+            log.info("Could not upload file {}", e.getMessage());
+            throw new CustomJobPortalException("Could not upload file", e);
         }
         return "redirect:/dashboard/";
     }
