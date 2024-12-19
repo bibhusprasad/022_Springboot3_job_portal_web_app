@@ -5,6 +5,7 @@ import com.bibhu.springboot.jobportal.entity.JobCompany;
 import com.bibhu.springboot.jobportal.entity.JobLocation;
 import com.bibhu.springboot.jobportal.entity.JobPostActivity;
 import com.bibhu.springboot.jobportal.entity.RecruiterJobsDTO;
+import com.bibhu.springboot.jobportal.exception.CustomJobPortalException;
 import com.bibhu.springboot.jobportal.repository.JobPostActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,9 @@ public class JobPostActivityService {
             recruiterJobsDTOs.add(new RecruiterJobsDTO(rec.getTotalCandidates(), rec.getJob_post_id(), rec.getJob_title(), loc, comp));
         }
         return recruiterJobsDTOs;
+    }
+
+    public JobPostActivity getJobDetails(int id) {
+        return jobPostActivityRepository.findById(id).orElseThrow(() -> new CustomJobPortalException("Requested Job not found."));
     }
 }

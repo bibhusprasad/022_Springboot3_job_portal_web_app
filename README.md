@@ -65,4 +65,7 @@ Web jars for our project
 
 ## 5. Recruiter Dashboard
 ### 5.1 Recruiter Dashboard display and retrieve jobs
-* [recruiter dashboard display and retrieve jobs]()
+* [recruiter dashboard display and retrieve jobs](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/66883da4efd21faaed651d5c088a94789bc36955)
+
+### 5.2 Edit a existing job
+* [edit a existing job]()
