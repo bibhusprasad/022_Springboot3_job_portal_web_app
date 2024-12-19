@@ -61,18 +61,21 @@ public class UsersService {
     }
 
     public Object getCurrentUserProfile() {
-        if (!isAnonymousAuthenticationTokenInstance()) {
+        int userId = getCurrentUser().getUserId();
+        if (getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))) {
+            return recruiterProfileRepository.findById(userId)
+                    .orElse(new RecruiterProfile());
+        } else {
+            return jobSeekerProfileRepository.findById(userId)
+                    .orElse(new JobSeekerProfile());
+        }
+    }
+
+    public Users getCurrentUser() {
+        if(!isAnonymousAuthenticationTokenInstance()) {
             String userName = getCurrentUsername();
-            Users user = findUserByEmail(userName)
+            return findUserByEmail(userName)
                     .orElseThrow(() -> new UsernameNotFoundException("Could not find user " + userName));
-            int userId = user.getUserId();
-            if (getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))) {
-                return recruiterProfileRepository.findById(userId)
-                        .orElse(new RecruiterProfile());
-            } else {
-                return jobSeekerProfileRepository.findById(userId)
-                        .orElse(new JobSeekerProfile());
-            }
         }
         return null;
     }

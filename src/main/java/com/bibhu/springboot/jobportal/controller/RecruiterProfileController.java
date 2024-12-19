@@ -8,7 +8,6 @@ import com.bibhu.springboot.jobportal.services.UsersService;
 import com.bibhu.springboot.jobportal.util.FileUploadUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -20,9 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Objects;
 import java.util.Optional;
-
-import static com.bibhu.springboot.jobportal.util.AuthenticationUtil.getCurrentUsername;
-import static com.bibhu.springboot.jobportal.util.AuthenticationUtil.isAnonymousAuthenticationTokenInstance;
 
 @Controller
 @RequestMapping("/recruiter-profile")
@@ -41,13 +37,8 @@ public class RecruiterProfileController {
 
     @GetMapping("/")
     public String recruiterProfile(Model model) {
-        if (!isAnonymousAuthenticationTokenInstance()) {
-            String currentUserName = getCurrentUsername();
-            Users users = usersService.findUserByEmail(currentUserName)
-                    .orElseThrow(() -> new UsernameNotFoundException("Could not found user " + currentUserName));
-            Optional<RecruiterProfile> recruiterProfileOptional = recruiterProfileService.findUserProfile(users.getUserId());
-            recruiterProfileOptional.ifPresent(recruiterProfile -> model.addAttribute("profile", recruiterProfile));
-        }
+        Optional<RecruiterProfile> recruiterProfileOptional = recruiterProfileService.findUserProfile(usersService.getCurrentUser().getUserId());
+        recruiterProfileOptional.ifPresent(recruiterProfile -> model.addAttribute("profile", recruiterProfile));
         return "recruiter_profile";
     }
 
@@ -55,13 +46,9 @@ public class RecruiterProfileController {
     public String addNewRecruiter(RecruiterProfile recruiterProfile,
                          Model model,
                          @RequestParam("image") MultipartFile multipartFile) {
-        if (!isAnonymousAuthenticationTokenInstance()){
-            String currentUserName = getCurrentUsername();
-            Users users = usersService.findUserByEmail(currentUserName)
-                    .orElseThrow(() -> new UsernameNotFoundException("Could not found user " + currentUserName));
-            recruiterProfile.setUserId(users);
-            recruiterProfile.setUserAccountId(users.getUserId());
-        }
+        Users users = usersService.getCurrentUser();
+        recruiterProfile.setUserId(users);
+        recruiterProfile.setUserAccountId(users.getUserId());
         model.addAttribute("profile", recruiterProfile);
         String fileName = "";
         if (StringUtils.hasLength(multipartFile.getOriginalFilename())) {
