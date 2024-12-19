@@ -27,6 +27,6 @@ public class JobCompany {
     @Column(columnDefinition = "serial")
     private int id;
 
-    private String logo;
     private String name;
+    private String logo;
 }

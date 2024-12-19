@@ -1,6 +1,8 @@
 package com.bibhu.springboot.jobportal.controller;
 
 import com.bibhu.springboot.jobportal.entity.JobPostActivity;
+import com.bibhu.springboot.jobportal.entity.RecruiterJobsDTO;
+import com.bibhu.springboot.jobportal.entity.RecruiterProfile;
 import com.bibhu.springboot.jobportal.entity.Users;
 import com.bibhu.springboot.jobportal.services.JobPostActivityService;
 import com.bibhu.springboot.jobportal.services.UsersService;
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Date;
+import java.util.List;
 
 import static com.bibhu.springboot.jobportal.util.AuthenticationUtil.getCurrentUsername;
 import static com.bibhu.springboot.jobportal.util.AuthenticationUtil.isAnonymousAuthenticationTokenInstance;
+import static com.bibhu.springboot.jobportal.util.AuthenticationUtil.isRecruiter;
 
 @Controller
 public class JobPostActivityController {
@@ -31,9 +35,13 @@ public class JobPostActivityController {
     @GetMapping("/dashboard/")
     public String searchJobs(Model model) {
         Object currentUserProfile = usersService.getCurrentUserProfile();
-
         if (!isAnonymousAuthenticationTokenInstance()) {
             model.addAttribute("username", getCurrentUsername());
+            if (isRecruiter()) {
+                List<RecruiterJobsDTO> recruiterJobs =
+                        jobPostActivityService.getRecruiterJobs(((RecruiterProfile) currentUserProfile).getUserAccountId());
+                model.addAttribute("jobPost", recruiterJobs);
+            }
         }
         model.addAttribute("user", currentUserProfile);
         return "dashboard";

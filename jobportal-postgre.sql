@@ -98,5 +98,18 @@ CREATE TABLE job_post_activity (
 CREATE INDEX FKpjpv059hollr4tk92ms09s6is ON job_post_activity (job_company_id);
 CREATE INDEX FK44003mnvj29aiijhsc6ftsgxe ON job_post_activity (job_location_id);
 CREATE INDEX FK62yqqbypsq2ik34ngtlw4m9k3 ON job_post_activity (posted_by_id);
-
 -- END : Create job_company, job_location and job_post_activity table --
+
+-- START : Create job_seeker_apply table --
+CREATE TABLE job_seeker_apply (
+    id SERIAL PRIMARY KEY NOT NULL,
+    apply_date timestamp(6) DEFAULT NULL,
+    cover_letter varchar(255) DEFAULT NULL,
+    job int DEFAULT NULL,
+    user_id int DEFAULT NULL,
+    CONSTRAINT UK8v6qok40anljlhpkc486nsdmu UNIQUE  (user_id,job),
+    CONSTRAINT FKmfhx9q4uclbb74vm49lv9dmf4 FOREIGN KEY (job) REFERENCES job_post_activity (job_post_id),
+    CONSTRAINT FKs9fftlyxws2ak05q053vi57qv FOREIGN KEY (user_id) REFERENCES job_seeker_profile (user_account_id)
+);
+CREATE INDEX FKmfhx9q4uclbb74vm49lv9dmf4 ON job_seeker_apply (job);
+-- END : Create job_seeker_apply table --

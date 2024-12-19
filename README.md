@@ -61,4 +61,8 @@ Web jars for our project
 * [refactored entities to use lombok framework](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/a4c52c4e1c5e6e7e056e1b8b362c7ffaa0c8c775)
 
 ### 4.2 Integrate HTML form for job posting
-* [integrate HTML form for job posting]()
+* [integrate HTML form for job posting](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/e68c86988009b16f6e4b782378768e7df2e06678)
+
+## 5. Recruiter Dashboard
+### 5.1 Recruiter Dashboard display and retrieve jobs
+* [recruiter dashboard display and retrieve jobs]()
