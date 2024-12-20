@@ -10,8 +10,10 @@ import com.bibhu.springboot.jobportal.repository.JobPostActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class JobPostActivityService {
@@ -40,5 +42,18 @@ public class JobPostActivityService {
 
     public JobPostActivity getJobDetails(int id) {
         return jobPostActivityRepository.findById(id).orElseThrow(() -> new CustomJobPortalException("Requested Job not found."));
+    }
+
+    public List<JobPostActivity> getAllJobs() {
+        return jobPostActivityRepository.findAll();
+    }
+
+    public List<JobPostActivity> searchPreferredJob(String job, String location,
+                                                    List<String> types, List<String> remotes, LocalDate searchDate) {
+        if (Objects.isNull(searchDate)) {
+            return jobPostActivityRepository.searchWithoutDate(job, location, types, remotes);
+        } else {
+            return jobPostActivityRepository.searchWithDate(job, location, types, remotes, searchDate);
+        }
     }
 }

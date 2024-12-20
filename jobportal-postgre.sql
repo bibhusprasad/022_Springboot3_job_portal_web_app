@@ -113,3 +113,15 @@ CREATE TABLE job_seeker_apply (
 );
 CREATE INDEX FKmfhx9q4uclbb74vm49lv9dmf4 ON job_seeker_apply (job);
 -- END : Create job_seeker_apply table --
+
+-- START : Create job_seeker_save table --
+CREATE TABLE job_seeker_save (
+    id SERIAL PRIMARY KEY NOT NULL,
+    job int DEFAULT NULL,
+    user_id int DEFAULT NULL,
+    CONSTRAINT UK1vn1w4dxfiavb5q2gu1n0whxo UNIQUE  (user_id,job),
+    CONSTRAINT FK96dyvgd8hmdohqsfdpvyl89mg FOREIGN KEY (user_id) REFERENCES job_seeker_profile (user_account_id),
+    CONSTRAINT FKpb44x040gkdltxqy9m7jmvvf3 FOREIGN KEY (job) REFERENCES job_post_activity (job_post_id)
+);
+CREATE INDEX FKpb44x040gkdltxqy9m7jmvvf3 ON job_seeker_save (job);
+-- END : Create job_seeker_save table --
