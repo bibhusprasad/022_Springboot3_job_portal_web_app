@@ -44,7 +44,7 @@ public class JobSeekerApply {
     private JobPostActivity job;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId", referencedColumnName = "userAccountId")
+    @JoinColumn(name = "userId", referencedColumnName = "user_account_id")
     private JobSeekerProfile userId;
 
 }

@@ -3,11 +3,13 @@ package com.bibhu.springboot.jobportal.controller;
 import com.bibhu.springboot.jobportal.entity.JobPostActivity;
 import com.bibhu.springboot.jobportal.entity.JobSeekerApply;
 import com.bibhu.springboot.jobportal.entity.JobSeekerProfile;
+import com.bibhu.springboot.jobportal.entity.JobSeekerSave;
 import com.bibhu.springboot.jobportal.entity.RecruiterJobsDTO;
 import com.bibhu.springboot.jobportal.entity.RecruiterProfile;
 import com.bibhu.springboot.jobportal.entity.Users;
 import com.bibhu.springboot.jobportal.services.JobPostActivityService;
 import com.bibhu.springboot.jobportal.services.JobSeekerApplyService;
+import com.bibhu.springboot.jobportal.services.JobSeekerSaveService;
 import com.bibhu.springboot.jobportal.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,14 +36,17 @@ public class JobPostActivityController {
     private final UsersService usersService;
     private final JobPostActivityService jobPostActivityService;
     private final JobSeekerApplyService jobSeekerApplyService;
+    private final JobSeekerSaveService jobSeekerSaveService;
 
     @Autowired
     public JobPostActivityController(UsersService usersService,
                                      JobPostActivityService jobPostActivityService,
-                                     JobSeekerApplyService jobSeekerApplyService) {
+                                     JobSeekerApplyService jobSeekerApplyService,
+                                     JobSeekerSaveService jobSeekerSaveService) {
         this.usersService = usersService;
         this.jobPostActivityService = jobPostActivityService;
         this.jobSeekerApplyService = jobSeekerApplyService;
+        this.jobSeekerSaveService = jobSeekerSaveService;
     }
 
     @GetMapping("/dashboard/")
@@ -115,6 +120,36 @@ public class JobPostActivityController {
                 model.addAttribute("jobPost", recruiterJobs);
             } else {
                 List<JobSeekerApply> jobSeekerApplyList = jobSeekerApplyService.getCandidatesJobs((JobSeekerProfile) currentUserProfile);
+                List<JobSeekerSave> jobSeekerSaveList = jobSeekerSaveService.getCandidatesJob((JobSeekerProfile) currentUserProfile);
+                boolean exist;
+                boolean saved;
+
+                for (JobPostActivity jobActivity : jobPostActivities) {
+                    exist = false;
+                    saved = false;
+                    for (JobSeekerApply jobSeekerApply : jobSeekerApplyList) {
+                        if (Objects.equals(jobActivity.getJobPostId(), jobSeekerApply.getJob().getJobPostId())) {
+                            jobActivity.setActive(true);
+                            exist = true;
+                            break;
+                        }
+                    }
+                    for (JobSeekerSave jobSeekerSave : jobSeekerSaveList) {
+                        if (Objects.equals(jobActivity.getJobPostId(), jobSeekerSave.getJob().getJobPostId())) {
+                            jobActivity.setSaved(true);
+                            saved = true;
+                            break;
+                        }
+                    }
+
+                    if (!exist) {
+                        jobActivity.setActive(false);
+                    }
+                    if (!saved) {
+                        jobActivity.setSaved(false);
+                    }
+                }
+                model.addAttribute("jobPost", jobPostActivities);
             }
         }
         model.addAttribute("user", currentUserProfile);
