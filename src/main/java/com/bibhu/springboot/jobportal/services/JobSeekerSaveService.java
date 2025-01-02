@@ -26,4 +26,8 @@ public class JobSeekerSaveService {
     public List<JobSeekerSave> getJobCandidates(JobPostActivity job) {
         return jobSeekerSaveRepository.findByJob(job);
     }
+
+    public JobSeekerSave addNew(JobSeekerSave jobSeekerSave) {
+        return jobSeekerSaveRepository.save(jobSeekerSave);
+    }
 }
