@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -94,5 +95,13 @@ public class JobSeekerProfileController {
             throw new CustomJobPortalException("Unable to upload image or resume", e);
         }
         return "redirect:/dashboard/";
+    }
+
+    @GetMapping("/{id}")
+    public String candidateProfile(@PathVariable("id") int id,
+                                   Model model) {
+        Optional<JobSeekerProfile> seekerProfile = jobSeekerProfileService.getJobSeekerProfile(id);
+        model.addAttribute("profile", seekerProfile.get());
+        return "job-seeker-profile";
     }
 }

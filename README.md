@@ -89,4 +89,8 @@ Web jars for our project
 
 ## 8. Job Candidate Save a job
 ### 8.1 Job Candidate Save a job
-* [job candidate save a job]()
+* [job candidate save a job](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/29c91fea98f9b93d2f3caaae8cbc840d2d551d61)
+
+## 9. Recruiter Download candidate resume
+### 9.1 View Applied Candidate profile in recruiter page
+* [view applied candidate profile in recruiter page]()
