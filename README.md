@@ -93,4 +93,7 @@ Web jars for our project
 
 ## 9. Recruiter Download candidate resume
 ### 9.1 View Applied Candidate profile in recruiter page
-* [view applied candidate profile in recruiter page]()
+* [view applied candidate profile in recruiter page](https://github.com/bibhusprasad/022_Springboot3_job_portal_web_app/commit/e9f23745e1cf9f6de7cc843ce382c520eb63b151)
+
+### 9.2 Download candidate resume
+* [download candidate resume]()

@@ -6,8 +6,14 @@ import com.bibhu.springboot.jobportal.entity.Users;
 import com.bibhu.springboot.jobportal.exception.CustomJobPortalException;
 import com.bibhu.springboot.jobportal.services.JobSeekerProfileService;
 import com.bibhu.springboot.jobportal.services.UsersService;
+import com.bibhu.springboot.jobportal.util.FileDownloadUtil;
 import com.bibhu.springboot.jobportal.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -18,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -103,5 +110,25 @@ public class JobSeekerProfileController {
         Optional<JobSeekerProfile> seekerProfile = jobSeekerProfileService.getJobSeekerProfile(id);
         model.addAttribute("profile", seekerProfile.get());
         return "job-seeker-profile";
+    }
+
+    @GetMapping("/downloadResume")
+    public ResponseEntity<?> downloadResume(@RequestParam(value = "fileName") String fileName,
+                                            @RequestParam(value = "userID") String userID) {
+        Resource resource = null;
+        try {
+            resource = FileDownloadUtil.getFileAsResourse("photos/candidate/" + userID, fileName);
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().build();
+        }
+        if (null == resource) {
+            return new ResponseEntity<>("File not found", HttpStatus.NOT_FOUND);
+        }
+        String contentType = "application/octet-stream";
+        String headerValue = "attachment; filename=\"" + resource.getFilename() + "\"";
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, headerValue)
+                .body(resource);
     }
 }
